@@ -1,0 +1,9 @@
+---
+applications:
+- name:      zip-weather
+  host:      zip-weather
+  memory:    128M
+  instances: 1
+  command:   node server
+  services:
+  - Twilio

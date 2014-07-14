@@ -1,0 +1,19 @@
+{
+  "name":               "bluemix-zip-weather",
+  "main":               "./lib/bluemix-zip-weather",
+  "description":        "Weather forecasts using twilio for Bluemix",
+  "version":            "0.1.0",
+  "license":            "Apache-2.0",
+  "repository": {
+    "type":             "git",
+    "url":              "https://github.com/pmuellr/bluemix-zip-weather.git"
+  },
+  "dependencies": {
+    "cfenv":            "0.2.x",
+    "express":          "4.6.x",
+    "q":                "1.0.x",
+    "request":          "2.37.x",
+    "twilio":           "1.6.x",
+    "underscore":       "1.6.x"
+  }
+}
