@@ -2,69 +2,57 @@
 
 $(onLoad)
 
+var $form
+var $location
+var $forecast
+var $locations
+
 //------------------------------------------------------------------------------
 function onLoad() {
-}
+  $form      = $("#get-forecast")
+  $location  = $("#location")
+  $forecast  = $("#forecast")
+  $locations = $("#locations")
 
+  $form.submit(function(event){
+    event.preventDefault()
+    getForecast()
+  })
 
-//------------------------------------------------------------------------------
-function updateTable(data) {
-  // get the table
-  table$ = $("#instance-table")
-
-  // delete the rows
-  $(".instance-row").remove()
-
-  // add the rows
-  for (var i=0; i<data.length; i++) {
-    addRow(table$, data[i], i)
-  }
+  setInterval(updateLocations, 1000)
 }
 
 //------------------------------------------------------------------------------
-function addRow(table$, row, instance) {
-  var newRow = "<tr class='instance-row' id='instance-row-" + instance + "'>"
-  newRow += "<td>" + instance + "</td>"
-  newRow += "<td class='mem'></td>"
-  newRow += "<td class='cpu'></td>"
-  newRow += "<td>"
-  newRow += "<button class='use-mem'>use mem</button>"
-  newRow += " "
-  newRow += "<button class='use-cpu'>use cpu</button>"
-  newRow += "</td>"
-  newRow += "</tr>"
+function getForecast() {
+  var location = $location.val()
+  if (location == "") location = "New York"
+    
+  setForecast("Getting forecast for " + location + " ...")
 
-  table$.append(newRow)
+  $.getJSON("/forecast?q=" + location)
 
-  var row$ = $("#instance-row-" + instance)
+  .done(function(data) {
+    setForecast("Forecast for " + data.location + "; " + data.forecast)
+  })
 
-  // update the memory usage
-  $(".mem", row$).text(row.mem + "MB")
-
-  // update the cpu busy seconds left
-  var cpuVal = "-"
-  if (row.cpu != null) cpuVal = row.cpu + " seconds"
-
-  $(".cpu", row$).text(cpuVal)
-
-  // click handlers for buttons
-  $(".use-mem", row$).click(instance, handleUseMem)
-  $(".use-cpu", row$).click(instance, handleUseCpu)
-}
-
-//------------------------------------------------------------------------------
-function handleUseMem(event) {
-  var instance = event.data
-
-  $.post("/" + instance + "/use-mem", function(data) {
+  .fail(function(jqXhr) {
+    setForecast("an error occurred: " + jqXhr.responseText)
   })
 }
 
 //------------------------------------------------------------------------------
-function handleUseCpu(event) {
-  var instance = event.data
+function setForecast(value) {
+  $forecast.text(value)
+}
 
-  $.post("/" + instance + "/use-cpu", function(data) {
+//------------------------------------------------------------------------------
+function updateLocations() {
+  $.getJSON("/locations")
+
+  .done(function(data) {
+    if (data.locations.length == 0) return
+
+    $locations.text("locations checked: " + data.locations.join("; "))
   })
 }
 

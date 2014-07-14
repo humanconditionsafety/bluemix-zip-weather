@@ -20,9 +20,65 @@
   <!-- ===================================================================== -->
 	<body>
 		<div class="container-fluid">
-			<h1>zip weather</h1>
-  	</div>
 
+			<div class="row">
+				<div class="col-xs-12">
+					<h1>zip weather</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<h1 class="phone-number">888-000-0000</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<p>Send a city name, zip code, etc to the number above to get a
+					forecast sent back to you.
+
+					<p>Or dial the number above to enter a zipcode on your dial pad to get
+					a forecast read back to you.
+
+					<p>Or enter a location in the entry field below to display the forecast
+					on this page.
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<form role="form" id="get-forecast">
+					  <div class="form-group">
+					    <label for="location">Location</label>
+					    <input type="text" class="form-control" id="location" placeholder="Enter location, zipcode, etc">
+					  </div>
+					  <button type="submit" class="btn btn-default">Get forecast</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<h2 id="forecast"></h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<p id="locations"></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<hr>
+					<p>fork me at
+						<a href="https://github.com/pmuellr/bluemix-zip-weather">GitHub</a>
+				</div>
+			</div>
+
+		</div>
 		<script src="js/jquery.js"></script>
 		<script src="js/bootstrap.js"></script>
     <script src="js/index.js"></script>
