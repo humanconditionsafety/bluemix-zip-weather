@@ -2,8 +2,10 @@
 applications:
 - name:      zip-weather
   host:      zip-weather
-  memory:    128M
+  memory:    256M
   instances: 1
   command:   node server
   services:
-  - Twilio
+  - zip-weather-twilio
+  - zip-weather-forecast
+  - zip-weather-geocode

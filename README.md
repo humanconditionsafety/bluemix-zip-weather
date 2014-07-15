@@ -17,6 +17,17 @@ money to it.
 When creating the service in Bluemix, you should arrange to name it
 `zip-weather-twilio`.
 
+You will also need to configure your Twilio incoming number to direct
+requests to the app running at Bluemix.  Go to the Twilio
+[Manage Numbers](https://www.twilio.com/user/account/phone-numbers/incoming)
+page, click on the number, and set the Voice and Messaging URLs to
+the following:
+
+    Voice:     http://<bluemix hostname>/message/voice
+    Messaging: http://<bluemix hostname>/message/sms
+
+Both messages should be configured to use `GET`, not `POST`.
+
 
 
 google geocode pre-reqs

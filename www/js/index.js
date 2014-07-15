@@ -6,35 +6,49 @@ var $form
 var $location
 var $forecast
 var $locations
+var locationsInterval
 
 //------------------------------------------------------------------------------
 function onLoad() {
-  $form      = $("#get-forecast")
-  $location  = $("#location")
-  $forecast  = $("#forecast")
-  $locations = $("#locations")
 
+  // get jquery objects for known locations
+  $form        = $("#get-forecast")
+  $location    = $("#location")
+  $forecast    = $("#forecast")
+  $locations   = $("#locations")
+
+  // when the form is submitted, get the forecast
   $form.submit(function(event){
     event.preventDefault()
     getForecast()
   })
 
-  setInterval(updateLocations, 1000)
+  // if the locations list is clicked on, update it
+  $locations.click(updateLocations)
+
+  // update the locations (until something shows up)
+  locationsInterval = setInterval(updateLocations, 1000)
 }
 
 //------------------------------------------------------------------------------
 function getForecast() {
+
+  // get the entered location
   var location = $location.val()
   if (location == "") location = "New York"
-    
+
+  // update the forecast output
   setForecast("Getting forecast for " + location + " ...")
 
+  // issue the REST call to get the forecast
   $.getJSON("/forecast?q=" + location)
 
+  // on success, update the forecast output
   .done(function(data) {
     setForecast("Forecast for " + data.location + "; " + data.forecast)
   })
 
+  // on failure, write the error message to the forecast output
   .fail(function(jqXhr) {
     setForecast("an error occurred: " + jqXhr.responseText)
   })
@@ -42,17 +56,28 @@ function getForecast() {
 
 //------------------------------------------------------------------------------
 function setForecast(value) {
+  // update the forecast output field
   $forecast.text(value)
 }
 
 //------------------------------------------------------------------------------
 function updateLocations() {
+
+  // issue REST call to get locations
   $.getJSON("/locations")
 
+  // on success ...
   .done(function(data) {
     if (data.locations.length == 0) return
 
+    // update the locations output
     $locations.text("locations checked: " + data.locations.join("; "))
+
+    // clear the interval if we've got an entry
+    if (null == locationsInterval) return
+
+    clearInterval(locationsInterval)
+    locationsInterval = null
   })
 }
 
