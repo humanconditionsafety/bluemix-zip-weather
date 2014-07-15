@@ -103,7 +103,7 @@ hacking
 If you want to modify the source to play with it, you'll want to have the
 `bower` program installed.
 
-    sudo npm -g install bower    # for mac and *nix
+    sudo npm -g install bower    # for mac and unix
     npm -g install bower         # for windows
 
 You'll also want to have the `jbuild` program installed.
@@ -130,16 +130,6 @@ tests re-run.  For ever.  Use Ctrl-C to exit the `jbuild watch` loop.
 You can run those build, server, and test tasks separately.  Run `jbuild`
 with no arguments to see what tasks are available, along with a short
 description of them.
-
-
-
-attributions
-================================================================================
-
-pig image adapted from:
-
-* <http://pixabay.com/en/pig-pink-animal-mammal-farm-animal-295040/>
-* license: <http://creativecommons.org/publicdomain/zero/1.0/deed.en>
 
 
 
