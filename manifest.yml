@@ -1,0 +1,11 @@
+---
+applications:
+- name:      zip-weather
+  host:      zip-weather
+  memory:    256M
+  instances: 1
+  command:   node server
+  services:
+  - zip-weather-twilio
+  - zip-weather-forecast
+  - zip-weather-geocode

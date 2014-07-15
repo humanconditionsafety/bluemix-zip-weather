@@ -1,0 +1,29 @@
+{
+  "user-provided" : [
+    {
+      "name" :         "zip-weather-twilio",
+      "label" :        "user-provided",
+      "credentials" : {
+        "url" :        "https://api.twilio.com",
+        "accountSID" : "<Account SID>",
+        "authToken" :  "<Auth Token>"
+      }
+    },
+
+    {
+      "name" :         "zip-weather-forecast",
+      "label" :        "user-provided",
+      "credentials" : {
+        "url" :        "https://api.forecast.io/forecast/<API key>"
+      }
+    },
+    
+    {
+      "name" :         "zip-weather-geocode",
+      "label" :        "user-provided",
+      "credentials" : {
+        "url" :        "https://maps.googleapis.com/maps/api/geocode/json?key=<API key>"
+      }
+    }
+  ]
+}

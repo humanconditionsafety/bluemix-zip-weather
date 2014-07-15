@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Gather timeout="10" finishOnKey="#" method="GET">
+    <Say>
+      To get a weather forecast, enter a zip code and then press the hash button.
+      To use your current location, press the star then hash buttons.
+    </Say>
+  </Gather>
+</Response>
