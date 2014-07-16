@@ -26,8 +26,8 @@ function onLoad() {
   // if the locations list is clicked on, update it
   $locations.click(updateLocations)
 
-  // update the locations (until something shows up)
-  locationsInterval = setInterval(updateLocations, 1000)
+  // get the initial list of locations
+  updateLocations()
 }
 
 //------------------------------------------------------------------------------
@@ -46,6 +46,7 @@ function getForecast() {
   // on success, update the forecast output
   .done(function(data) {
     setForecast("Forecast for " + data.location + "; " + data.forecast)
+    updateLocations()
   })
 
   // on failure, write the error message to the forecast output
@@ -72,12 +73,6 @@ function updateLocations() {
 
     // update the locations output
     $locations.text("locations checked: " + data.locations.join("; "))
-
-    // clear the interval if we've got an entry
-    if (null == locationsInterval) return
-
-    clearInterval(locationsInterval)
-    locationsInterval = null
   })
 }
 
